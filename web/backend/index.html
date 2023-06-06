@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <<<<<<< Updated upstream =======
+  <head>
+    <meta charset="utf-8" />
+    <title>Add a geocoder</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="createmap.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      function createmap() {
+        const map = new mapboxgl.Map({
+          container: "map",
+          // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+          style: "mapbox://styles/mapbox/streets-v12",
+          center: [103.802719, 1.35658],
+          zoom: 14,
+        });
+        return map;
+      }
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoicmVmbGVjdDIxIiwiYSI6ImNsaWg2cmcwOTB3b2gzZW1ydjhiNzFmNDUifQ.vNAfTCa1nfLngMOquM96Qg";
+
+      createmap();
+
+      // Add the control to the map.
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+        })
+      );
+
+      // returns coordinates
+      map.on("click", function (e) {
+        var clickedCoordinates = e.lngLat;
+        var longitude = clickedCoordinates.lng;
+        var latitude = clickedCoordinates.lat;
+        console.log(clickedCoordinates); // You can use the coordinates as per your requirements
+        console.log(latitude);
+        //adds a marker whenever u click on location
+        var marker = new mapboxgl.Marker()
+          .setLngLat([longitude, latitude]) // Marker coordinates
+          .addTo(map);
+      });
+
+      // Initialize the GeolocateControl.
+
+      // Add the control to the map.
+      map.addControl(
+        new mapboxgl.GeolocateControl({
+          positionOptions: {
+            enableHighAccuracy: true,
+          },
+          // When active the map will receive updates to the device's location as it changes.
+          trackUserLocation: true,
+          // Draw an arrow next to the location dot to indicate which direction the device is heading.
+          showUserHeading: true,
+        })
+      );
+      map.addControl(
+        new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl,
+        })
+      );
+
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(position.coords.longitude);
+      });
+    </script>
+  </body>
+</html>
+>>>>>>> Stashed changes
