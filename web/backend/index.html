@@ -13,9 +13,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
-    <script>
-      import("createmap.js");
-    </script>
+    <script src="createmap.js"></script>
     <style>
       body {
         margin: 0;
@@ -30,14 +28,6 @@
     </style>
   </head>
   <body>
-    <!-- Load the `mapbox-gl-geocoder` plugin. -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
-      type="text/css"
-    />
-
     <div id="map"></div>
 
     <script>
@@ -53,13 +43,7 @@
       }
       mapboxgl.accessToken =
         "pk.eyJ1IjoicmVmbGVjdDIxIiwiYSI6ImNsaWg2cmcwOTB3b2gzZW1ydjhiNzFmNDUifQ.vNAfTCa1nfLngMOquM96Qg";
-      //   const map = new mapboxgl.Map({
-      //     container: "map",
-      //     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      //     style: "mapbox://styles/mapbox/streets-v12",
-      //     center: [103.802719, 1.35658],
-      //     zoom: 14,
-      //   });
+
       createmap();
 
       // Add the control to the map.
