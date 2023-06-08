@@ -77,6 +77,19 @@
             mapboxgl: mapboxgl,
           })
         );
+        map.addControl(
+          new mapboxgl.GeolocateControl({
+            positionOptions: {
+              enableHighAccuracy: true,
+            },
+
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true,
+          })
+        );
+
         return map;
       }
 
@@ -89,9 +102,9 @@
           createmap(lat, long); // Pass lat and long as arguments
         });
       }
-
-      const x = createfullmap();
-
+      createfullmap();
+      const x = createmap();
+      console.log(x);
       // returns coordinates
       x.on("click", function (e) {
         var clickedCoordinates = e.lngLat;
@@ -104,21 +117,6 @@
           .setLngLat([longitude, latitude]) // Marker coordinates
           .addTo(x);
       });
-
-      // Initialize the GeolocateControl.
-
-      // Add the control to the map.
-      map.addControl(
-        new mapboxgl.GeolocateControl({
-          positionOptions: {
-            enableHighAccuracy: true,
-          },
-          // When active the map will receive updates to the device's location as it changes.
-          trackUserLocation: true,
-          // Draw an arrow next to the location dot to indicate which direction the device is heading.
-          showUserHeading: true,
-        })
-      );
 
       navigator.geolocation.getCurrentPosition((position) => {
         console.log(position.coords.latitude);
