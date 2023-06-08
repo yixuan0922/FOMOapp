@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-  <<<<<<< Updated upstream =======
   <head>
     <meta charset="utf-8" />
     <title>Add a geocoder</title>
@@ -13,7 +12,6 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
-    <script src="createmap.js"></script>
     <style>
       body {
         margin: 0;
@@ -28,34 +26,74 @@
     </style>
   </head>
   <body>
+    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+
     <div id="map"></div>
 
     <script>
-      function createmap() {
+      mapboxgl.accessToken =
+        "pk.eyJ1IjoicmVmbGVjdDIxIiwiYSI6ImNsaWd0dTZzMDBwYmczZG1zM3dzaWp3YzYifQ.fr5zUjAk-Xjjw3Z8oc_bUA";
+      // const map = new mapboxgl.Map({
+      //   container: "map",
+      //   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+      //   style: "mapbox://styles/mapbox/streets-v12",
+      //   center: [103.85567331591699, 1.3225],
+      //   zoom: 14,
+      // });
+
+      // function createmap() {
+      //   const map = new mapboxgl.Map({
+      //     container: "map",
+      //     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+      //     style: "mapbox://styles/mapbox/streets-v12",
+      //     center: [103.802719, 1.35658],
+      //     zoom: 14,
+      //   });
+      //   map.addControl(
+      //     new MapboxGeocoder({
+      //       accessToken: mapboxgl.accessToken,
+      //       mapboxgl: mapboxgl,
+      //     })
+      //   );
+      //   return map;
+      // }
+      function createmap(lat, long) {
         const map = new mapboxgl.Map({
           container: "map",
           // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
           style: "mapbox://styles/mapbox/streets-v12",
-          center: [103.802719, 1.35658],
+          center: [long, lat], // Use lat and long as the center coordinates
           zoom: 14,
         });
+        map.addControl(
+          new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl,
+          })
+        );
         return map;
       }
-      mapboxgl.accessToken =
-        "pk.eyJ1IjoicmVmbGVjdDIxIiwiYSI6ImNsaWg2cmcwOTB3b2gzZW1ydjhiNzFmNDUifQ.vNAfTCa1nfLngMOquM96Qg";
 
-      createmap();
+      function createfullmap() {
+        navigator.geolocation.getCurrentPosition((position) => {
+          var lat = position.coords.latitude;
+          var long = position.coords.longitude;
+          console.log(lat);
+          console.log(long);
+          createmap(lat, long); // Pass lat and long as arguments
+        });
+      }
 
-      // Add the control to the map.
-      map.addControl(
-        new MapboxGeocoder({
-          accessToken: mapboxgl.accessToken,
-          mapboxgl: mapboxgl,
-        })
-      );
+      const x = createfullmap();
 
       // returns coordinates
-      map.on("click", function (e) {
+      x.on("click", function (e) {
         var clickedCoordinates = e.lngLat;
         var longitude = clickedCoordinates.lng;
         var latitude = clickedCoordinates.lat;
@@ -64,7 +102,7 @@
         //adds a marker whenever u click on location
         var marker = new mapboxgl.Marker()
           .setLngLat([longitude, latitude]) // Marker coordinates
-          .addTo(map);
+          .addTo(x);
       });
 
       // Initialize the GeolocateControl.
@@ -81,17 +119,10 @@
           showUserHeading: true,
         })
       );
-      map.addControl(
-        new MapboxGeocoder({
-          accessToken: mapboxgl.accessToken,
-          mapboxgl: mapboxgl,
-        })
-      );
 
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position.coords.longitude);
+        console.log(position.coords.latitude);
       });
     </script>
   </body>
 </html>
->>>>>>> Stashed changes
