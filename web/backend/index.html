@@ -38,31 +38,8 @@
 
     <script>
       mapboxgl.accessToken =
-        "pk.eyJ1IjoicmVmbGVjdDIxIiwiYSI6ImNsaWd0dTZzMDBwYmczZG1zM3dzaWp3YzYifQ.fr5zUjAk-Xjjw3Z8oc_bUA";
-      // const map = new mapboxgl.Map({
-      //   container: "map",
-      //   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      //   style: "mapbox://styles/mapbox/streets-v12",
-      //   center: [103.85567331591699, 1.3225],
-      //   zoom: 14,
-      // });
+        "pk.eyJ1IjoicmVmbGVjdDIxIiwiYSI6ImNsaWg2cmcwOTB3b2gzZW1ydjhiNzFmNDUifQ.vNAfTCa1nfLngMOquM96Qg";
 
-      // function createmap() {
-      //   const map = new mapboxgl.Map({
-      //     container: "map",
-      //     // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-      //     style: "mapbox://styles/mapbox/streets-v12",
-      //     center: [103.802719, 1.35658],
-      //     zoom: 14,
-      //   });
-      //   map.addControl(
-      //     new MapboxGeocoder({
-      //       accessToken: mapboxgl.accessToken,
-      //       mapboxgl: mapboxgl,
-      //     })
-      //   );
-      //   return map;
-      // }
       function createmap(lat, long) {
         const map = new mapboxgl.Map({
           container: "map",
@@ -97,30 +74,30 @@
         navigator.geolocation.getCurrentPosition((position) => {
           var lat = position.coords.latitude;
           var long = position.coords.longitude;
-          console.log(lat);
+
+          console.log(typeof lat);
           console.log(long);
           createmap(lat, long); // Pass lat and long as arguments
         });
       }
       createfullmap();
-      const x = createmap();
-      console.log(x);
-      // returns coordinates
-      x.on("click", function (e) {
-        var clickedCoordinates = e.lngLat;
-        var longitude = clickedCoordinates.lng;
-        var latitude = clickedCoordinates.lat;
-        console.log(clickedCoordinates); // You can use the coordinates as per your requirements
-        console.log(latitude);
-        //adds a marker whenever u click on location
-        var marker = new mapboxgl.Marker()
-          .setLngLat([longitude, latitude]) // Marker coordinates
-          .addTo(x);
-      });
 
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position.coords.latitude);
-      });
+      // returns coordinates
+      // x.on("click", function (e) {
+      //   var clickedCoordinates = e.lngLat;
+      //   var longitude = clickedCoordinates.lng;
+      //   var latitude = clickedCoordinates.lat;
+      //   console.log(clickedCoordinates); // You can use the coordinates as per your requirements
+      //   console.log(latitude);
+      //   //adds a marker whenever u click on location
+      //   var marker = new mapboxgl.Marker()
+      //     .setLngLat([longitude, latitude]) // Marker coordinates
+      //     .addTo(x);
+      // });
+
+      // navigator.geolocation.getCurrentPosition((position) => {
+      //   console.log(position.coords.latitude);
+      // });
     </script>
   </body>
 </html>
