@@ -12,6 +12,7 @@
       rel="stylesheet"
     />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <!-- <script type= "text/javascript" src="./mapDB.mjs"></script> -->
     <style>
       body {
         margin: 0;
@@ -36,10 +37,11 @@
 
     <div id="map"></div>
 
-    <script>
+    <script type = "text/javascript">
       mapboxgl.accessToken =
         "pk.eyJ1IjoicmVmbGVjdDIxIiwiYSI6ImNsaWg2cmcwOTB3b2gzZW1ydjhiNzFmNDUifQ.vNAfTCa1nfLngMOquM96Qg";
 
+        
       function createmap(lat, long) {
         const map = new mapboxgl.Map({
           container: "map",
@@ -78,6 +80,9 @@
           console.log(typeof lat);
           console.log(long);
           createmap(lat, long); // Pass lat and long as arguments
+
+          
+
         });
       }
       createfullmap();
