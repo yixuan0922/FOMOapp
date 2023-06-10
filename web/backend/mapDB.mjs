@@ -5,6 +5,7 @@ import sqlite3 from "sqlite3";
 // var sqlite3 = sqlite3
 
 const DB_PATH = `${process.cwd()}/database.sqlite`;
+// const DB_PATH = `./database.sqlite`;
 // const PT = './queryHist.sqlite';
 
 export const mapDB = {
@@ -48,6 +49,8 @@ export const mapDB = {
 
     const rawResults = await this.__query(query);
 
+    console.log(rawResults)
+
     return rawResults;
 
   },
@@ -67,7 +70,7 @@ export const mapDB = {
 
   },
   
-  
+
   // Checker 
   __hasTable: async function () {
     const query = `
@@ -118,6 +121,7 @@ export const mapDB = {
 
     // Query func
   __query: function (sql, params = []) {
+
     return new Promise((resolve, reject) => {
       this.db.all(sql, params, (err, result) => {
         if (err) {

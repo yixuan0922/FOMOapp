@@ -1,11 +1,18 @@
 import express from 'express';
 import { mapDB } from './web/backend/mapDB.mjs';
 
+// import { createfullmap } from './web/backend/createfullmap';
+
 const app = express();
 const port = 3000
+app.get('/home', (req, res) => {
+
+  res.send('Hello World!')
+})
 
 app.get('/test', (req, res) => {
-  res.send('Hello World!')
+
+  res.send('Hello World test!')
 })
 
 app.get('/db', (req, res) => {
@@ -13,7 +20,9 @@ app.get('/db', (req, res) => {
   
   mapDB.init()
   
-  mapDB.create(1,1,"test","test")
+  // mapDB.create(2,2,"test","demo")
+  mapDB.getAll()
+
 
 })
 
