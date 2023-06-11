@@ -49,7 +49,8 @@ export const mapDB = {
 
     const rawResults = await this.__query(query);
 
-    console.log(rawResults)
+    console.log(rawResults) // -> returns 
+                            // [ { id: 1, lat: '1', long: '1', name: 'test', description: 'test' } ]
 
     return rawResults;
 
