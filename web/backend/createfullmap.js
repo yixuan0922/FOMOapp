@@ -1,3 +1,5 @@
+import { mapDB } from "./mapDB.mjs";
+
 function createmap(lat, long) {
   const map = new mapboxgl.Map({
     container: "map",
