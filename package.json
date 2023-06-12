@@ -20,7 +20,8 @@
     "axios": "^1.4.0",
     "expo": "^48.0.17",
     "express": "^4.18.2",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.5",
